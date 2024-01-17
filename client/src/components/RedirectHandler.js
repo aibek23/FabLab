@@ -4,7 +4,7 @@ import useRedirect from "../hooks/redirect.hook";
 
 export const RedirectHandler = ({ children }) => {
   const { redirect } = useRedirect();
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   if (redirect) {
     return <Navigate to={redirect} />;

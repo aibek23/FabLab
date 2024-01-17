@@ -13,9 +13,7 @@ app.use(express.json({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/upload', require('./routes/upload.routes'));
-
-
-// app.use('/api/user', require('./routes/user.routes'));
+app.use('/api/user', require('./routes/user.routes'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, 'client', 'build')));
@@ -41,6 +39,7 @@ async function start() {
     process.exit(1);
   }
 }
+
 
 start();
 

@@ -3,10 +3,9 @@ import { Navbar, Nav } from "react-bootstrap";
 import { connect } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 // import { Context } from '../context/Context'
-const Header = ({ role , auth }) => {
+const Header = ({ role, auth }) => {
   return (
     <>
-   
       <Navbar
         variant="dark"
         expand="lg"
@@ -16,7 +15,10 @@ const Header = ({ role , auth }) => {
         <div className="container">
           <Navbar.Brand href="/">Fab lab</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav " className="d-flex justify-content-end">
+          <Navbar.Collapse
+            id="basic-navbar-nav "
+            className="d-flex justify-content-end"
+          >
             <Nav className="mr-5 d-flex">
               {/* {state.adm ? (
                 <NavLink className="nav-link" to={"/admin"}>
@@ -28,10 +30,14 @@ const Header = ({ role , auth }) => {
               <NavLink className="nav-link" to={"/"}>
                 Главная
               </NavLink>
-              <NavLink className="nav-link" to={"/search"}>
-                 поиск студента
-              </NavLink>
-      
+              {auth.username ? (
+                <NavLink className="nav-link" to={"/search"}>
+                  поиск студента
+                </NavLink>
+              ) : (
+                ""
+              )}
+
               {/* {state.authenticated ? (
                 <NavLink className="nav-link" to={"/tests"}>
                   Тесты
@@ -39,12 +45,9 @@ const Header = ({ role , auth }) => {
               ) : (
                 ""
               )} */}
-              
-              {role !== "default" ? (
-                <NavLink
-                  className="nav-link"
-                  to={"/user"}
-                >
+
+              {auth.username ? (
+                <NavLink className="nav-link" to={"/user"}>
                   {auth.username}
                 </NavLink>
               ) : (
@@ -61,7 +64,8 @@ const Header = ({ role , auth }) => {
 };
 
 const mapStateToProps = (state) => ({
-  role: state.role,auth: state.auth,
+  role: state.role,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps)(Header);

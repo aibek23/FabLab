@@ -9,6 +9,7 @@ import AdminManager from './role/AdminManager';
 import  AuthPage  from './AuthPage';
 import Profile from './role/Profile';
 import SearchUser from './SearchUser';
+import  ProfileViwer  from './ProfileViwer';
 
 const AppRouter = () => {
 
@@ -25,6 +26,7 @@ const AppRouter = () => {
         <Route path="/admin-manager" element={<AdminManager />} />
         <Route path="/authPage" element={<AuthPage />} />
         <Route path="/user" element={<Profile />} />
+        <Route path="/user-viwer/?" element={<ProfileViwer />} />
         <Route path="/search" element={<SearchUser />} />
          <Route path="/" element={<Home />} />
       </Routes>
