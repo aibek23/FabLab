@@ -54,7 +54,7 @@ const AddReviews = () => {
 
   useEffect(() => {
     fetchData()
-  }, []);
+  }, [addBtn,data]);
 
   const handleImageError = (e) => {
     e.target.src = Platzhalter;

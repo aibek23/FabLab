@@ -1,5 +1,5 @@
 {
-  "name": "erlan",
+  "name": "nuska",
   "version": "1.0.0",
   "description": "deutsch",
   "main": "app.js",
@@ -12,10 +12,10 @@
     "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
-    "erlan",
+    "nuska",
     "react"
   ],
-  "author": "<erlan.2001@yandex.ru>",
+  "author": "<nuska.2003@yandex.ru>",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
