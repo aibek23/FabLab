@@ -10,7 +10,7 @@ import  AuthPage  from './AuthPage';
 import Profile from './role/Profile';
 import SearchUser from './SearchUser';
 import  ProfileViwer  from './ProfileViwer';
-
+import Footer from '../components/Footer';
 const AppRouter = () => {
 
 
@@ -30,6 +30,8 @@ const AppRouter = () => {
         <Route path="/search" element={<SearchUser />} />
          <Route path="/" element={<Home />} />
       </Routes>
+
+      <Footer/>
     </Router>
   );
 };
