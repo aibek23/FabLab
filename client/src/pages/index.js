@@ -11,6 +11,7 @@ import Profile from './role/Profile';
 import SearchUser from './SearchUser';
 import  ProfileViwer  from './ProfileViwer';
 import Footer from '../components/Footer';
+
 const AppRouter = () => {
 
 

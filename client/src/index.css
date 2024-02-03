@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.bg-body-tertiary{
+  background: "#34469D";
+}
+/* .editorClassName{
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 5px 5px 20px black;
+} */

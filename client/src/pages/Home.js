@@ -8,6 +8,7 @@ import HomeImg3 from "../img/i (7).webp";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { MdAccessTimeFilled } from "react-icons/md";
 import { GrMail } from "react-icons/gr";
+import Draft  from "../components/Draft";
 import Carousel from "react-bootstrap/Carousel";
 import Form from "../components/Form";
 const Home = ({ role, setRole }) => {
@@ -30,6 +31,7 @@ const Home = ({ role, setRole }) => {
         <h1 className="mt-5">Добро пожаловать в FAB LAB Бишкек!</h1>
         <div className="row">
           <div className="col-md-8">
+
             <p>
               Цифровая лаборатория и мастерская для всех, кто хочет воплотить
               свои идеи в реальность! 🚀
@@ -99,7 +101,7 @@ const Home = ({ role, setRole }) => {
         </Carousel.Item>
       </Carousel>
       <div className="container row mt-5 mb-5" style={{"justifyContent":"space-between"}}>
-        <div className="col-6">
+        <div className="col-lg-6">
         <div className="d-flex">
           <div className="d-flex align-items-center">
             <p>

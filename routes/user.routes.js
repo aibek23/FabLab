@@ -7,7 +7,6 @@ const router = Router();
 router.get("/all", auth, (req, res) => {
   User.findAll()
     .then(userall => {
-      console.log(userall);
       res.json(userall);
     })
     .catch(e => {

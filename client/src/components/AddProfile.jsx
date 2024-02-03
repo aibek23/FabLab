@@ -13,7 +13,7 @@ import React, {
   import Platzhalter from "../img/Platzhalter-1.jpg";
   import { FaCog } from 'react-icons/fa';
   import {AiFillDelete} from 'react-icons/ai'
-  
+  import Draft from "../components/Draft"; 
   const ImageThumb = ({ image }) => {
     return (
       <img
@@ -106,8 +106,7 @@ import React, {
       try {
         setIsLoading(true);
         if (
-          title === "" ||
-          description === ""
+          false
         ) {
           toast.error("заполните все поля формы", {
             position: "top-right",
@@ -174,7 +173,7 @@ import React, {
         setIsLoading(false);
         console.log(e);
       }
-    }, [ description, file, title]);
+    }, [description, file, title ]);
   
     const handleImageError = (e) => {
       // Функция для обработки ошибки загрузки изображения
@@ -251,7 +250,9 @@ import React, {
       }
       setIsLoading(false);
     }
-  
+    const handleTextChange = (text) => {
+      setDescription(text);
+    };
     return (
       <>
         <ToastContainer
@@ -290,7 +291,7 @@ import React, {
   
             </div>
             <div className="form-group mt-5 ">
-              <textarea
+              {/* <textarea
                 className="form-control"
                 id="textAreaExample6"
                 rows="7"
@@ -299,8 +300,8 @@ import React, {
                 placeholder="Введите описание ..."
                 cols={50}
                 style={{ border: "#566885 solid 2px", "::placeholder": { color: "#566885" } }}
-              />
-  
+              /> */}
+              <Draft onTextChange={handleTextChange}/>
             </div>
   
             <div className="col-lg-7 mt-5">

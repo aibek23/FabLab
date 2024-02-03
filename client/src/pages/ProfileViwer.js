@@ -3,7 +3,7 @@ import { useHttp } from '../hooks/http.hook'
 import Platzhalter from "../img/Platzhalter-1.jpg";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import HtmlViewer from "../components/HtmlViewer"
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
  const ProfileViwer =()=>{
@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom';
     const [data, setData] = useState([]);
     const [dataUserlink, setDataUserLink] = useState([]);
     const cardId = location.search.substring(1)
+    console.log(cardId);
     const dataUser = JSON.parse(localStorage.getItem('localST'));
     const [addBtn, setAddBtn] = useState(false);
     const { loading, request, error, clearError } = useHttp();
@@ -32,7 +33,8 @@ import { useLocation } from 'react-router-dom';
           progress: undefined,
         });
       }
-    }, [cardId]);
+    }, []);
+
     const registerHandler = async () => {
       try {
         const res = await axios.get(`/api/user/showid/${cardId}`, {
@@ -55,7 +57,7 @@ import { useLocation } from 'react-router-dom';
   
     useEffect(() => {
       registerHandler()
-    }, [cardId]);
+    }, []);
     useEffect(() => {
       error &&
         toast.error(`${error}`, {
@@ -121,9 +123,8 @@ import { useLocation } from 'react-router-dom';
         </div>
         <div className="col-md-8">
      
-          <div>
-            <h2>резюме:</h2>
-            <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{data?.description}</p>
+          <div className="mb-5">
+           <HtmlViewer htmlContent={data?.description} />
           </div>
        
       </div>

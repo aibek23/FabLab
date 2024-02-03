@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHttp } from '../hooks/http.hook'
 import Platzhalter from "../img/Platzhalter-1.jpg";
 import { toast, ToastContainer } from "react-toastify";
@@ -6,21 +6,22 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import AddProfile from "../components/AddProfile";
 import axios from "axios";
+import HtmlViewer from "./HtmlViewer"
 const AddReviews = () => {
   const { loading, request, error, clearError } = useHttp();
-  const [data, setData] = useState([]);
   const [cardId, setCardId] = useState("");
-  const dataUser = JSON.parse(localStorage.getItem('localST'));
+  const [data, setData] = useState([]);
   const [addBtn, setAddBtn] = useState(false);
-
-  const fetchData = useCallback(async () => {
+  const dataUser = JSON.parse(localStorage.getItem('localST'));
+  
+  const fetchData = async () => {
     try {
       const res = await axios.get(`/api/upload/showid/${dataUser.userId}`, {
         headers: { Authorization: `Bearer ${dataUser.token}` },
       });
       setData(res.data);
     } catch (error) {
-      let message = error.message;
+      let message = error.message || "Error fetching data.";
       toast.error(`${message}`, {
         position: "top-right",
         autoClose: 5000,
@@ -31,30 +32,34 @@ const AddReviews = () => {
         progress: undefined,
       });
     }
-  }, [dataUser]);
+  };
 
-  useEffect(() => {
-    error &&
-      toast.error(`${error}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    clearError();
-  }, [error, clearError]);
+useEffect(() => {
+
+
+  fetchData(); // Call the function immediately
+
+}, [])
+
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(`${error}`, {
+  //       position: "top-right",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //     });
+  //     clearError();
+  //   }
+  // }, [error, clearError]);
 
   const logoutHandler = () => {
     localStorage.removeItem("localST");
     window.location.reload();
   };
-
-  useEffect(() => {
-    fetchData()
-  }, [addBtn,data]);
 
   const handleImageError = (e) => {
     e.target.src = Platzhalter;
@@ -106,7 +111,8 @@ const AddReviews = () => {
         ) : (
           <div>
             <h2>резюме:</h2>
-            <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{data?.description}</p>
+            <HtmlViewer htmlContent={data?.description} />
+            {/* <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{data?.description}</p> */}
           </div>
         )}
         <p className="text-center">
